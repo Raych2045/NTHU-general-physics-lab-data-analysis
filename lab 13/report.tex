@@ -1,0 +1,120 @@
+\begin{table}[htb!]
+\centering
+\caption{Measured and calculated current, using $R_{\text{load}}=\qty{390}{\kohm}$ with 5\% tolerance}
+\begin{tabular}{ccc}
+\toprule
+$V_{\text{multi}}$ (\unit{\V}) & $I_G$ (\unit{\uA}) & $I_T$ (\unit{\uA}) \\
+\midrule
+$7.44$ & $18.4$ & $19.08 \pm 0.96$ \\
+$7.89$ & $20.2$ & $20.2 \pm 1.1$ \\
+$9.00$ & $22.0$ & $23.1 \pm 1.2$ \\
+$10.13$ & $24.8$ & $26.0 \pm 1.3$ \\
+$11.20$ & $27.4$ & $28.7 \pm 1.5$ \\
+$12.02$ & $29.2$ & $30.8 \pm 1.6$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{Linear fit parameters for $I_T = a I_G + b$}
+\begin{tabular}{cc}
+\toprule
+Parameter & Value \\
+\midrule
+$a$ & $1.112 \pm 0.043$ \\
+$b$ & $(-1.66 \pm 0.99)\times 10^{-6}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{Measured voltage and corrected current}
+\begin{tabular}{ccc}
+\toprule
+$V_{\text{multi}}$ (\unit{\mV}) & $I_G$ (\unit{\uA}) & $I_T$ (\unit{\uA}) \\
+\midrule
+$19.6$ & $10.2$ & $9.68 \pm 0.86$ \\
+$27.8$ & $13.8$ & $13.68 \pm 0.77$ \\
+$43.3$ & $22.2$ & $23.01 \pm 0.67$ \\
+$53.2$ & $27.4$ & $28.79 \pm 0.70$ \\
+$61.0$ & $30.8$ & $32.57 \pm 0.75$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{Calculating galvanometer resistance $R_G$}
+\begin{tabular}{cc}
+\toprule
+Parameter & Value \\
+\midrule
+$a$ & $(5.66 \pm 0.23)\times 10^{-4}$ \\
+$b$ & $(-1.6 \pm 1.1)\times 10^{-6}$ \\
+$R_G=1/a$ (\unit{\kohm}) & $1.766 \pm 0.071$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{Current comparison between self-made ammeter and multimeter}
+\begin{tabular}{cccccccc}
+\toprule
+$R_{\text{used}}$ (\unit{\ohm}) & $R_{\text{load}}$ (\unit{\ohm}) & $V_{PS}$ (\unit{\V}) & $I_G$ (\unit{\uA}) & $I_T$ (\unit{\uA}) & $I_{\text{tot}}=I_{T}(1+R_{G}/R_{\text{used}})$ (\unit{\A}) & $I_{\text{multi}}$ (\unit{\A}) & Error \\
+\midrule
+$1.65$ & $150$ & $5.00$ & $28.2$ & $29.68 \pm 0.71$ & $0.0318 \pm 0.0022$ & $0.032$ & $-0.64\%$ \\
+$17$ & $300$ & $1.00$ & $27.8$ & $29.24 \pm 0.70$ & $(3.07 \pm 0.20)\times 10^{-3}$ & $0.00322$ & $-4.78\%$ \\
+$16$ & $150$ & $0.50$ & $26.2$ & $27.46 \pm 0.68$ & $(3.06 \pm 0.21)\times 10^{-3}$ & $0.00311$ & $-1.67\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{Voltage comparison between self-made voltmeter and multimeter}
+\begin{tabular}{cccccccc}
+\toprule
+$R_{\text{used}}$ (\unit{\kohm}) & $R_{\text{load}}$ (\unit{\ohm}) & $V_{PS}$ (\unit{\V}) & $I_G$ (\unit{\uA}) & $I_T$ (\unit{\uA}) & $V_{\text{ab}}=I_{T}(R_{G}+R_{\text{used}})$ (\unit{\V}) & $V_{\text{multi}}$ (\unit{\V}) & Error \\
+\midrule
+$200$ & $150$ & $5.00$ & $23.2$ & $24.13 \pm 0.67$ & $4.87 \pm 0.28$ & $4.95$ & $-1.66\%$ \\
+$50$ & $150$ & $1.50$ & $28.2$ & $29.68 \pm 0.71$ & $1.537 \pm 0.083$ & $1.497$ & $2.65\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{Resistance comparison between self-made ohmmeter and multimeter with $V_{PS}=0.4\,\mathrm{V}$ and $R_{\text{used}}=\qty{6.2}{\kohm}$}
+\begin{tabular}{cccccc}
+\toprule
+$R_{\text{load}}$ (\unit{\kohm}) & $I_G$ (\unit{\uA}) & $I_T$ (\unit{\uA}) & $R_{\text{load,est}}$ (\unit{\kohm}) & $R_{\text{load,multi}}$ (\unit{\kohm}) & Error \\
+\midrule
+$0.39$ & $44.2$ & $47.5 \pm 1.2$ & $0.42 \pm 0.21$ & $0.386$ & $10.08\%$ \\
+$39$ & $7.8$ & $7.01 \pm 0.92$ & $48.9 \pm 7.8$ & $39.2$ & $24.64\%$ \\
+$390$ & $0.2$ & $-1.4 \pm 1.2$ & $(-2.8 \pm 2.3)\times 10^{2}$ & $390$ & $-173.03\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{Resistance comparison between self-made ohmmeter and multimeter with $V_{PS}=2.03\,\mathrm{V}$ and $R_{\text{used}}=\qty{39}{\kohm}$}
+\begin{tabular}{cccccc}
+\toprule
+$R_{\text{load}}$ (\unit{\kohm}) & $I_G$ (\unit{\uA}) & $I_T$ (\unit{\uA}) & $R_{\text{load,est}}$ (\unit{\kohm}) & $R_{\text{load,multi}}$ (\unit{\kohm}) & Error \\
+\midrule
+$0.39$ & $49.4$ & $53.2 \pm 1.4$ & $-2.49 \pm 0.97$ & $0.386$ & $-744.19\%$ \\
+$39$ & $24.4$ & $25.46 \pm 0.67$ & $39.3 \pm 2.9$ & $39.2$ & $0.24\%$ \\
+$390$ & $4.2$ & $3.0 \pm 1.1$ & $(6.4 \pm 2.4)\times 10^{2}$ & $390$ & $63.33\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{Resistance comparison between self-made ohmmeter and multimeter with $V_{PS}=10.09\,\mathrm{V}$ and $R_{\text{used}}=\qty{200}{\kohm}$}
+\begin{tabular}{cccccc}
+\toprule
+$R_{\text{load}}$ (\unit{\kohm}) & $I_G$ (\unit{\uA}) & $I_T$ (\unit{\uA}) & $R_{\text{load,est}}$ (\unit{\kohm}) & $R_{\text{load,multi}}$ (\unit{\kohm}) & Error \\
+\midrule
+$0.39$ & $46$ & $49.5 \pm 1.2$ & $2.2 \pm 5.0$ & $0.386$ & $461.30\%$ \\
+$39$ & $38.6$ & $41.24 \pm 0.96$ & $42.8 \pm 6.1$ & $39.2$ & $9.28\%$ \\
+$390$ & $15.6$ & $15.68 \pm 0.73$ & $442 \pm 37$ & $390$ & $13.25\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}

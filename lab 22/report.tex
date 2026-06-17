@@ -1,0 +1,85 @@
+\begin{table}[htb!]
+\centering
+\caption{不同條紋數下的雷射波長的計算值}
+\begin{tabular}{ccc}
+\toprule
+測微頭讀數差 (\unit{\mm}) & N & $\lambda$ (\unit{\nm}) \\
+\midrule
+$0.182$ & $20$ & $728$ \\
+$0.370$ & $40$ & $740$ \\
+$0.535$ & $60$ & $713.3$ \\
+$0.715$ & $80$ & $715$ \\
+$0.849$ & $100$ & $679.2$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{$N=100$對應的$\lambda$與參考值的相對誤差，有考慮B類不確定度}
+\begin{tabular}{cc}
+\toprule
+Parameter & Value \\
+\midrule
+$\lambda_{\text{obs}}$ (\unit{\nm}) & $679.2 \pm 2.3$ \\
+$\lambda_{\text{ref}}$ (\unit{\nm}) & $657$ \\
+Error & $3.38\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{在此視每組數據皆是獨立的，最後一行四捨五入至小數點下第三位}
+\begin{tabular}{ccc}
+\toprule
+角度讀數差 (\unit{\degree}) & N & $n_{\text{glass}}$ \\
+\midrule
+$10.1$ & $100$ & $1.538$ \\
+$10.3$ & $100$ & $1.506$ \\
+$11.3$ & $100$ & $1.386$ \\
+$11.6$ & $100$ & $1.359$ \\
+$10.5$ & $100$ & $1.478$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{玻璃折射率測量值與參考值的相對誤差，僅考慮A類不確定度}
+\begin{tabular}{cc}
+\toprule
+Parameter & Value \\
+\midrule
+$n_{\text{glass,obs}}$ & $1.453 \pm 0.035$ \\
+$n_{\text{glass,ref}}$ & $1.46$ \\
+Error & $-0.46\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{不同壓力差下的空氣折射率差，中間一行只取三位有效數字}
+\begin{tabular}{ccc}
+\toprule
+N & $\Delta n$ & $\Delta P$ (\unit{\kPa}) \\
+\midrule
+$3$ & $3.285e-05$ & $20.5$ \\
+$6$ & $6.57e-05$ & $30.8$ \\
+$9$ & $9.855e-05$ & $41.0$ \\
+$12$ & $0.0001314$ & $51.3$ \\
+$15$ & $0.0001643$ & $62.0$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{外推回歸直線而計算出的空氣折射率}
+\begin{tabular}{cc}
+\toprule
+Parameter & Value \\
+\midrule
+Slope $s$ & $(3.174 \pm 0.017)\times 10^{-6}$ \\
+Intercept & $(-3.195 \pm 0.071)\times 10^{-5}$ \\
+$n_{\text{air,obs}}=1+s\cdot\qty{101.325}{\kPa}$ & $1.0003216 \pm 0.0000017$ \\
+$n_{\text{air,ref}}$ & $1.00025{-}1.00035$ \\
+\bottomrule
+\end{tabular}
+\end{table}

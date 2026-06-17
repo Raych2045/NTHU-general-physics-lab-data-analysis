@@ -1,0 +1,134 @@
+\begin{table}[htb!]
+\centering
+\caption{壓克力板子實驗的數據，未考慮$2R$的不確定度。}
+\begin{tabular}{ccc}
+\toprule
+描述 & 一面粗糙 & 兩面光滑 \\
+\midrule
+厚度$d$ (\unit{\mm}) & 9.52, 9.56, 9.54, 9.56, 9.54 & 9.62, 9.66, 9.64, 9.66, 9.64 \\
+$d$的觀測結果 (\unit{\mm}) & $9.5440 \pm 0.0095$ & $9.6440 \pm 0.0095$ \\
+直徑$2R$ (\unit{\mm}) & $31.84$ （暗圈） & $37.12$ （亮圈） \\
+$n_{\text{obs}}$ & $1.56128 \pm 0.00092$ & $1.44222 \pm 0.00074$ \\
+Error & $4.78\%$ & $-3.21\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{壓克力棒子實驗的數據}
+\begin{tabular}{ccc}
+\toprule
+壓克力柱$D_{\text{acry}}$ (\unit{\m}) & 空氣柱$D_{\text{air}}$ (\unit{\m}) & 測距儀$l$ (\unit{\mm}) \\
+\midrule
+$0.710$ & $0.506$ & $104.70$ \\
+$0.710$ & $0.507$ & $104.72$ \\
+$0.709$ & $0.506$ & $104.68$ \\
+$0.710$ & $0.506$ & $104.70$ \\
+$0.710$ & $0.506$ & $104.72$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{續上表。這裡未考慮$D_{\text{acry}}$和$D_{\text{air}}$的B類不確定度。}
+\begin{tabular}{cc}
+\toprule
+Parameter & Value \\
+\midrule
+$D_{\text{acry}}$的觀測結果 (\unit{\m}) & $0.70980 \pm 0.00036$ \\
+$D_{\text{air}}$的觀測結果 (\unit{\m}) & $0.50620 \pm 0.00036$ \\
+$l$的觀測結果 (\unit{\mm}) & $104.7040 \pm 0.0095$ \\
+$n_{\text{obs}}=\dfrac{D_{\text{acry}}-l}{D_{\text{air}}-l}$ & $1.5071 \pm 0.0016$ \\
+Error & $1.15\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{使用兩片偏振片觀測透光強度，其中$I_{0}$取$\theta=0$時的$I_{\text{obs}}$。}
+\begin{tabular}{ccccc}
+\toprule
+$\theta$ (\unit{\degree}) & $\cos^{2}\theta$ & Raw $I_{\text{obs}}$ (\unit{\lux}) & $I_{\text{obs}}$ (\unit{\lux}) & $I_{\text{theo}}:=I_{0}\cos^{2}\theta$ (\unit{\lux}) \\
+\midrule
+$0$ & $1$ & 19.048, 18.847, 18.511, 18.924, 18.700 & $18.806 \pm 0.093$ & $18.806$ \\
+$30$ & $0.75$ & 13.365, 13.552, 14.219, 14.338, 14.343 & $13.96 \pm 0.21$ & $14.104$ \\
+$45$ & $0.5$ & 10.265, 10.357, 10.796, 10.040, 10.207 & $10.33 \pm 0.13$ & $9.403$ \\
+$60$ & $0.25$ & 5.769, 5.635, 5.834, 5.826, 5.776 & $5.768 \pm 0.036$ & $4.702$ \\
+$90$ & $0$ & 0.072, 0.062, 0.045, 0.043, 0.029 & $0.0502 \pm 0.0076$ & $0$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{利用光強觀測值反推穿射軸夾角}
+\begin{tabular}{ccccc}
+\toprule
+  & $30$ & $45$ & $60$ & $90$ \\
+\midrule
+$\theta_{\text{obs}}:=\arccos\sqrt{I/I_{0}}$ (\unit{\degree}) & $30.5$ & $42.2$ & $56.4$ & $87.0$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{使用三片偏振片觀測透光強度}
+\begin{tabular}{cccc}
+\toprule
+$\theta$ (\unit{\degree}) & $\sin^{2}2\theta$ & Raw $I_{\text{obs}}$ (\unit{\lux}) & $I_{\text{obs}}$ (\unit{\lux}) \\
+\midrule
+$0$ & $0$ & 0.030, 0.038, 0.033, 0.033, 0.029 & $0.0326 \pm 0.0016$ \\
+$45$ & $1$ & 4.287, 4.312, 4.341, 4.310, 4.277 & $4.305 \pm 0.012$ \\
+$90$ & $0$ & 0.096, 0.112, 0.099, 0.116, 0.110 & $0.1066 \pm 0.0039$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{Brewster's angle的觀測結果}
+\begin{tabular}{cc}
+\toprule
+Parameter & Value \\
+\midrule
+$\theta_{B}$ (\unit{\degree}) & 55.0, 56.0, 54.5, 54.5, 55.5 \\
+$\theta_{B}$的測量結果 (\unit{\degree}) & $55.10 \pm 0.41$ \\
+$n_{\text{obs}}=\tan\theta_{B}$ & $1.433 \pm 0.022$ \\
+Error & $-3.79\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{單狹縫繞射子實驗的數據，其中$L= \qty{77.85}{\cm}$。$\lambda_{\text{ref}}$取 \qty{532}{\nm}。}
+\begin{tabular}{cccc}
+\toprule
+$a$ (\unit{\mm}) & $W$ (\unit{\mm}) & $\lambda_{\text{obs}}=aW/2L$ (\unit{\nm}) & Error \\
+\midrule
+$0.04$ & $20.08$ & $516$ & $-3.03\%$ \\
+$0.08$ & $10.50$ & $539$ & $1.41\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{雙狹縫繞射子實驗的數據，其中$L= \qty{86.50}{\cm}$，$\lambda$取$\lambda_{\text{ref}}$}
+\begin{tabular}{ccccccccc}
+\toprule
+代號 & $W$ (\unit{\mm}) & $a_{\text{obs}}$ (\unit{\mm}) & $a_{\text{ref}}$ (\unit{\mm}) & Error ($a$) & $\Delta y$ (\unit{\mm}) & $d_{\text{obs}}$ (\unit{\mm}) & $d_{\text{ref}}$ (\unit{\mm}) & Error ($d$) \\
+\midrule
+A & $24.20$ & $0.038$ & $0.04$ & $-4.92\%$ & $1.865$ (=20.52/11) & $0.247$ & $0.25$ & $-1.33\%$ \\
+C & $11.06$ & $0.083$ & $0.08$ & $4.02\%$ & $1.904$ (=9.52/5) & $0.242$ & $0.25$ & $-3.32\%$ \\
+D & $11.70$ & $0.079$ & $0.08$ & $-1.67\%$ & $0.942$ (=9.42/10) & $0.489$ & $0.50$ & $-2.30\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{利用狹縫間距計算值反推狹縫與牆壁的（水平）夾角}
+\begin{tabular}{cccc}
+\toprule
+狹縫代號 & A & C & D \\
+\midrule
+$\varphi=\arccos(d_{\text{obs}}/d_{\text{ref}})$ (\unit{\degree}) & $9.34$ & $14.81$ & $12.30$ \\
+\bottomrule
+\end{tabular}
+\end{table}

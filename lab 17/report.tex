@@ -1,0 +1,149 @@
+\begin{table}[htb!]
+\centering
+\caption{電阻在不同壓降下流經的電流}
+\begin{tabular}{cc}
+\toprule
+Voltage (\unit{\V}) & Current (\unit{\mA}) \\
+\midrule
+$29.8$ & $15.1$ \\
+$26.9$ & $13.6$ \\
+$23.9$ & $12.09$ \\
+$20.9$ & $10.58$ \\
+$17.88$ & $9.06$ \\
+$14.91$ & $7.56$ \\
+$11.93$ & $6.04$ \\
+$8.95$ & $4.53$ \\
+$5.98$ & $3.03$ \\
+$2.86$ & $1.453$ \\
+$0.01$ & $0.005$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{電阻值的測量結果}
+\begin{tabular}{cc}
+\toprule
+Parameter & Value \\
+\midrule
+slope $s$ & $(5.0609 \pm 0.0031)\times 10^{-4}$ \\
+intercept & $(3.5 \pm 5.4)\times 10^{-6}$ \\
+$R_{\text{obs}}=1/s$ (\unit{\ohm}) & $(1.9759 \pm 0.0012)\times 10^{3}$ \\
+$R_{\text{multi}}$ (\unit{\ohm}) & $1974$ \\
+Error & $0.10\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{矽二極體在不同壓降下流經的電流，負號代表逆向偏壓}
+\begin{tabular}{cc}
+\toprule
+Voltage (\unit{\mV}) & Current (\unit{\mA}) \\
+\midrule
+$-3.01$ & $0$ \\
+$-2.01$ & $0$ \\
+$-1.008$ & $0$ \\
+$10.8$ & $0$ \\
+$575$ & $0.72$ \\
+$629$ & $2.29$ \\
+$654$ & $3.89$ \\
+$691$ & $8.79$ \\
+$711$ & $13.73$ \\
+$724$ & $18.7$ \\
+$735$ & $24$ \\
+$743$ & $29$ \\
+$750$ & $34.1$ \\
+$756$ & $39.2$ \\
+$762$ & $44.3$ \\
+$766$ & $49.4$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{藍色LED在不同壓降下流經的電流}
+\begin{tabular}{cc}
+\toprule
+Voltage (\unit{\V}) & Current (\unit{\mA}) \\
+\midrule
+$0.01$ & $0$ \\
+$1.01$ & $0$ \\
+$2.01$ & $0$ \\
+$2.51$ & $0.242$ \\
+$2.6$ & $1.72$ \\
+$2.65$ & $3.2$ \\
+$2.69$ & $4.69$ \\
+$2.73$ & $6.18$ \\
+$2.76$ & $7.67$ \\
+$2.79$ & $9.17$ \\
+$2.81$ & $10.67$ \\
+$2.84$ & $12.17$ \\
+$2.86$ & $13.66$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{紅色LED在不同壓降下流經的電流}
+\begin{tabular}{cc}
+\toprule
+Voltage (\unit{\V}) & Current (\unit{\mA}) \\
+\midrule
+$0.012$ & $0$ \\
+$1.008$ & $0$ \\
+$1.697$ & $0.152$ \\
+$1.755$ & $0.606$ \\
+$1.81$ & $2.11$ \\
+$1.839$ & $3.6$ \\
+$1.86$ & $5.11$ \\
+$1.877$ & $6.61$ \\
+$1.892$ & $8.11$ \\
+$1.906$ & $9.61$ \\
+$1.919$ & $11.12$ \\
+$1.931$ & $12.62$ \\
+$1.945$ & $14.12$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{導通電壓和普朗克常數的計算結果}
+\begin{tabular}{cccccc}
+\toprule
+Color & Turn-on Voltage $V_F$ (\unit{\V}) & $\lambda$ (\unit{\nm}) & $h_{\text{obs}}=eV_F\lambda/c$ (\unit{\J\s}) & $h_{\text{ref}}$ (\unit{\J\s}) & Error \\
+\midrule
+Blue & $2.6253 \pm 0.0060$ & $460$ & $(6.454 \pm 0.015)\times 10^{-34}$ & $6.626\times 10^{-34}$ & $-2.60\%$ \\
+Red & $1.8086 \pm 0.0034$ & $635$ & $(6.138 \pm 0.012)\times 10^{-34}$ & $6.626\times 10^{-34}$ & $-7.37\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{去除異常值後，使用各個數據集計算普朗克常數的結果}
+\begin{tabular}{cccc}
+\toprule
+$\lambda$ (\unit{\nm}) & $V_F$ (\unit{\V}) & $h_{\text{obs}}$ (\unit{\J\s}) & Error \\
+\midrule
+$460$ & $2.5966 \pm 0.0051$ & $(6.384 \pm 0.013)\times 10^{-34}$ & $-3.66\%$ \\
+$525$ & $2.381 \pm 0.015$ & $(6.682 \pm 0.042)\times 10^{-34}$ & $0.84\%$ \\
+$590$ & $1.9177 \pm 0.0082$ & $(6.047 \pm 0.026)\times 10^{-34}$ & $-8.74\%$ \\
+$635$ & $1.8396 \pm 0.0072$ & $(6.243 \pm 0.025)\times 10^{-34}$ & $-5.78\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[htb!]
+\centering
+\caption{由上圖回歸直線斜率計算普朗克常數的結果}
+\begin{tabular}{cc}
+\toprule
+Parameter & Value \\
+\midrule
+slope & $(1.307 \pm 0.014)\times 10^{-6}$ \\
+intercept & $-0.240 \pm 0.026$ \\
+$h_{\text{obs}}$ (\unit{\J\s}) & $(6.983 \pm 0.072)\times 10^{-34}$ \\
+$h_{\text{ref}}$ (\unit{\J\s}) & $6.626\times 10^{-34}$ \\
+Error & $5.38\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
