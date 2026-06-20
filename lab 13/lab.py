@@ -143,7 +143,7 @@ df_C["u_I_T"] = np.sqrt(
 )
 
 R_used = df_C["R_used"]
-u_R_used = [1.65, np.sqrt(227), np.sqrt(226)] * df_C["uncertainty_R_used(%)"] / 100
+u_R_used = [1.65, np.sqrt(15**2+1+1), np.sqrt(15**2+1)] * df_C["uncertainty_R_used(%)"] / 100
 
 df_C["I"] = df_C["I_T"] * (1 + R_G / R_used)
 df_C["u_I"] = np.sqrt(

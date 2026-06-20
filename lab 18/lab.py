@@ -299,15 +299,14 @@ df_to_latex(
 lam_obs_list = []
 err_ss_list  = []
 
+L_ss = 77.85
+
 for _, row in df_ss.iterrows():
     a_m   = row["a_mm"] * 1e-3
     W_m   = row["W_mm"] * 1e-3
-    L_m   = row["L_cm"] * 1e-2
-    lam   = a_m * W_m / (2 * L_m) * 1e9   # → nm
+    lam   = a_m * W_m / (2 * L_ss) * 1e11   # → nm
     lam_obs_list.append(lam)
     err_ss_list.append(rel_err(lam, lambda_ref_nm))
-
-L_ss = df_ss["L_cm"].iloc[0]
 
 df_to_latex(
     pd.DataFrame({
@@ -334,8 +333,9 @@ err_a_list   = []
 err_d_list   = []
 dy_str_list  = []
 
+L_ds = 86.5
+
 for _, row in df_ds.iterrows():
-    L_m      = row["L_cm"] * 1e-2
     W_m      = row["W_mm"] * 1e-3
     span_mm  = float(row["span_mm"])
     N        = int(row["N_fringes"])
@@ -345,16 +345,14 @@ for _, row in df_ds.iterrows():
     dy_mm  = span_mm / N
     dy_m   = dy_mm * 1e-3
 
-    a_obs_mm = 2 * L_m * lambda_ref_m / W_m * 1e3
-    d_obs_mm = L_m * lambda_ref_m / dy_m * 1e3
+    a_obs_mm = 2 * L_ds * lambda_ref_m / W_m * 10
+    d_obs_mm = L_ds * lambda_ref_m / dy_m * 10
 
     a_obs_list.append(a_obs_mm)
     d_obs_list.append(d_obs_mm)
     err_a_list.append(rel_err(a_obs_mm, a_ref_mm))
     err_d_list.append(rel_err(d_obs_mm, d_ref_mm))
     dy_str_list.append(f"${dy_mm:.3f}$ (={span_mm:.2f}/{N})")
-
-L_ds = df_ds["L_cm"].iloc[0]
 
 # Table 10
 df_to_latex(
@@ -363,11 +361,11 @@ df_to_latex(
         "$W$ (\\unit{\\mm})":                 df_ds["W_mm"].map(lambda x: f"${x:.2f}$"),
         "$a_{\\text{obs}}$ (\\unit{\\mm})":   [f"${v:.3f}$" for v in a_obs_list],
         "$a_{\\text{ref}}$ (\\unit{\\mm})":   df_ds["a_ref_mm"].map(lambda x: f"${x:.2f}$"),
-        "Error":                         [percent(e) for e in err_a_list],
+        "Error for a":                         [percent(e) for e in err_a_list],
         "$\\Delta y$ (\\unit{\\mm})":          dy_str_list,
         "$d_{\\text{obs}}$ (\\unit{\\mm})":   [f"${v:.3f}$" for v in d_obs_list],
         "$d_{\\text{ref}}$ (\\unit{\\mm})":   df_ds["d_ref_mm"].map(lambda x: f"${x:.2f}$"),
-        "Error":                         [percent(e) for e in err_d_list],
+        "Error for d":                         [percent(e) for e in err_d_list],
     }),
     caption=(
         f"雙狹縫繞射子實驗的數據，其中$L= \\qty{{{L_ds:.2f}}}{{\\cm}}$，"

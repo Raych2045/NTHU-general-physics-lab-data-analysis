@@ -17,15 +17,17 @@ REPORT.write_text("", encoding="utf-8")
 df = pd.read_excel(BASE_DIR / "lab 14" / "data.xlsx")
 
 g = 9.80665
-I_const = 3.04
+I_const_A = 3.04
 B_ref = 0.09677 - 0.00064
 
 D = 0.0177
 a_param = 0.2115
 b_param = 1.0065
-r = 0.0031
+R = 0.0031
 L = 0.279
 mu0 = 4 * np.pi * 10**(-7)
+
+I_ref_B = I_const_A
 
 df["mass"] = df["mass"] / 1000
 
@@ -100,13 +102,13 @@ plt.legend()
 plt.savefig(FIGURES_DIR / "lengths.png", dpi=300)
 plt.close()
 
-B_outer = s_outer / I_const
-B_inner = s_inner / I_const
-B_avg   = s_avg   / I_const
+B_outer = s_outer / I_const_A
+B_inner = s_inner / I_const_A
+B_avg   = s_avg   / I_const_A
 
-u_B_outer = u_s_outer / I_const
-u_B_inner = u_s_inner / I_const
-u_B_avg   = u_s_avg   / I_const
+u_B_outer = u_s_outer / I_const_A
+u_B_inner = u_s_inner / I_const_A
+u_B_avg   = u_s_avg   / I_const_A
 
 err_outer = (B_outer - B_ref) / B_ref * 100
 err_inner = (B_inner - B_ref) / B_ref * 100
@@ -125,7 +127,7 @@ u_b_mag = np.sqrt(pcov_B[1, 1])
 
 current   = s_mag / 0.038
 u_current = u_s_mag / 0.038
-err_i     = (current - 3.04) / 3.04 * 100
+err_i     = (current - I_ref_B) / I_ref_B * 100
 
 plot_fit(df_B["B_values"], df_B["F"], s_mag, b_mag,
          "B (T)", "force (N)", "magnetic field")
@@ -147,7 +149,7 @@ cov_sb_C   = pcov_C[0, 1]
 plot_fit(df_C["I2"], df_C["F"], s_C, b_C,
          "I$^2$ ($\\mathrm{A}^2$)", "force (N)", "Squared current")
 
-d               = (a_param * D / (2 * b_param)) + r
+d               = (a_param * D / (2 * b_param)) + R
 K_mu            = 2 * np.pi * d / L
 mu_est          = K_mu * s_C
 u_mu_est        = K_mu * u_s_C
@@ -284,7 +286,7 @@ df_to_latex(
             f"${a_param * 100:.2f}$",
             f"${b_param * 100:.2f}$",
             f"${D * 100:.2f}$",
-            f"${r * 1000:.2f}$",
+            f"${R * 1000:.2f}$",
             f"${d:.3g}$",
             f"${L * 100:.2f}$",
             pm(mu_est, u_mu_est),

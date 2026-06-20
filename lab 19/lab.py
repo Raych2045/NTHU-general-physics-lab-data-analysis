@@ -53,7 +53,7 @@ f2, Vout2, phase2 = f2[idx2], Vout2[idx2], phase2[idx2]
 f_reson_obs = float(f2[np.argmax(Vout2)])
 A_max       = float(np.max(Vout2))
 
-# Hardcoded damping data (from fitting.py)
+# Hardcoded damping data
 t_peak_us = np.array([15.2, 45.0, 75.6, 106.0, 136.0, 166.0, 197.0])
 V_peak    = np.array([4.40, 3.76, 3.20, 2.72, 2.32, 2.00, 1.68])
 t_peak_s  = t_peak_us * 1e-6
