@@ -1,0 +1,47 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsthm, amsmath, amsfonts, amssymb}
+\everymath{\displaystyle}
+\usepackage[margin=2cm]{geometry}
+% \usepackage{multirow}
+% \usepackage{multicol}
+% \usepackage{longtable}
+\usepackage{indentfirst}
+\setlength{\parindent}{22pt}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{placeins}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage{titling}
+\author{Your name}
+\usepackage{siunitx}
+\sisetup{uncertainty-mode = separate}
+\usepackage[unicode=true, pdfborder={0 0 0}, bookmarksdepth=-1]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue, 
+    urlcolor=cyan,
+    linktocpage=true,
+    }
+\urlstyle{same}
+\usepackage[noabbrev,nameinlink]{cleveref}
+\renewcommand{\baselinestretch}{1.5} % 設定行距{倍數}
+\renewcommand{\headrulewidth}{0.4pt} % 設定頁首多一條粗細是 0.4 pt 的水平線
+\setlength{\headheight}{15pt}
+\renewcommand{\footrulewidth}{0.4pt} % 設定頁尾多一條粗細是 0.4 pt 的水平線
+\setcounter{secnumdepth}{2}
+\usepackage[CJKmath=true,AutoFakeBold=3,AutoFakeSlant=.2]{xeCJK} % 使用 XeLaTeX 中日韓套件
+\setCJKmainfont{cwTeXKai}  % 設定一般字體(\textrm)
+\XeTeXlinebreaklocale "zh"
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\begin{document}
+\pagestyle{fancy}
+\lhead{Lab}
+\rhead{}
+\lfoot{作者：\theauthor} % 在左下角顯示作者
+\cfoot{}
+\rfoot{第 \thepage 頁，共 \pageref*{LastPage} 頁} % 在右下角顯示頁碼
+% Your data
+\end{document}

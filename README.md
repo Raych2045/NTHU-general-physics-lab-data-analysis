@@ -2,8 +2,8 @@
 
 Python scripts for data analysis in undergraduate physics experiments.
 
-## Requirements
-- Python 3.12
+## Requirements for running `lab.py`
+- Python 3.10 or later versions
 - NumPy
 - Pandas
 - Matplotlib
@@ -12,15 +12,61 @@ Python scripts for data analysis in undergraduate physics experiments.
 
 ## Workflow
 
-1. Fill in each lab's `data.xlsx` (and `data2.xlsx`, etc., where a lab has more than one) with measurements. Column meanings are documented per lab below.
-2. Run that lab's `lab.py`. It can be run from anywhere — `BASE_DIR` is derived from the script's own location (`Path(__file__).resolve().parent.parent`), so the current working directory doesn't matter.
+1. Fill in each lab's `data.xlsx` (and `data2.xlsx`, etc., if a lab has more than one) with measurements. Column meanings are documented per lab below.
+2. Run that lab's `lab.py`. It can be run from anywhere. The current working directory doesn't matter.
 3. `lab.py` reads the spreadsheet(s), recomputes every derived quantity, then:
    - clears and rewrites a single `report.tex` per lab with all LaTeX table fragments (so reruns are idempotent, not appended);
    - regenerates every figure into `figures/`, overwriting the old ones.
-4. Copy the relevant tables from `report.tex` and figures from `figures/` into the matching `Overleaf Projects/post-lab <N>/main.tex`.
-5. Shared helpers (`pm`, `percent`, `df_to_latex`, `typeA_uncertainty`, `linear_model`, `compute_r_squared`) live in the root-level `package.py` and are imported by every `lab.py` via `sys.path.insert(0, str(Path(__file__).resolve().parent.parent))`.
+
+### Details
+
+1. `BASE_DIR` is derived from the script's own location (`Path(__file__).resolve().parent.parent`)
+2. Shared helpers (`pm`, `percent`, `df_to_latex`, `typeA_uncertainty`, `linear_model`, `compute_r_squared`) live in the root-level `package.py` and are imported by every `lab.py` via `sys.path.insert(0, str(Path(__file__).resolve().parent.parent))`.
+
+## How to use `report.tex`?
+
+It only contains LaTeX tables, and direct compilation will not produce any results.
+
+The recommended approach is to import the images from `figures/` and `report.tex` together into `latexplate.tex`, and then compile it locally or on Overleaf. You should then get a PDF file.
+
+Of course, you can also use your preferred preamble to format the document, but you must include the following three LaTeX packages: `booktabs`, `siunitx`, and `xeCJK`.
 
 ## data.xlsx reference
+
+### Lab 3 — Centripetal force
+
+`data.xlsx` has one sheet per experiment, each storing raw (ungrouped) period readings.
+
+**Sheet `Exp1`**
+
+| Column | Unit | Meaning |
+|---|---|---|
+| `m_g` | g | Hanging mass as a equivalent of centripetal force, varied across rows; multiple raw rows per mass |
+| `T_s` | s | Raw measured period of rotation |
+
+**Sheet `Exp2`**
+
+| Column | Unit | Meaning |
+|---|---|---|
+| `r_cm` | cm | Rotation radius, varied across rows; multiple raw rows per radius |
+| `T_s` | s | Raw measured period of rotation |
+
+**Experiments**
+
+| Symbol | Meaning |
+|---|---|
+| Exp1 | $M$ and $r$ fixed, hanging mass $m$ varied — infer $m$ from each measured period ($mg=4\pi^2Mr/T^2$), then fit $T^{-2}$ vs. $m$ to estimate $M$ from the slope |
+| Exp2 | $M$ and $m$ fixed, rotation radius $r$ varied — fit $T^2$ vs. $r$ to estimate $m$ from the slope; cross-checked by substituting Exp2's period at the radius matching Exp1's fixed $r$ into Exp1's $T^{-2}$–$m$ fit line |
+
+**Constants** (hardcoded in `lab.py`)
+
+| Line | Variable | Value | Unit | Used in | Meaning |
+|---|---|---|---|---|---|
+| 14 | `g` | 9.8 | m/s² | both | Standard gravity |
+| 15 | `M_ref` | 209.2e-3 | kg | both | Rotating-body mass (balance reading), fixed in both experiments |
+| 16 | `r1` | 0.1200 | m | both | Rotation radius fixed in Experiment 1; also the radius in Experiment 2 used for the cross-check |
+| 17 | `m_ref` | 55.34e-3 | kg | Exp2 | Hanging-mass balance reading, fixed in Experiment 2 |
+| 23 | `T_TYPEB_S` | $0.010/\sqrt{12}$ | s | both | Type-B uncertainty of $T$ from the 10 ms stopwatch resolution, combined with the Type-A (std/√N) uncertainty per mass/radius group |.
 
 ### Lab 13 — Galvanometer and self-made meters
 
