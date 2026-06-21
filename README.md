@@ -68,6 +68,63 @@ Of course, you can also use your preferred preamble to format the document, but 
 | 17 | `m_ref` | 55.34e-3 | kg | Exp2 | Hanging-mass balance reading, fixed in Experiment 2 |
 | 23 | `T_TYPEB_S` | $0.010/\sqrt{12}$ | s | both | Type-B uncertainty of $T$ from the 10 ms stopwatch resolution, combined with the Type-A (std/√N) uncertainty per mass/radius group |.
 
+### Lab 5 — Moments of inertia
+
+`data.xlsx` has three sheets.
+
+**Sheet `part1_3_timestamps`**
+
+Each column is one f-t regression's raw stopwatch-reading chain (ascending, ms). Consecutive entries form a $(T_1,T_2)$ pair (`T1=chain[:-1]`, `T2=chain[1:]`).
+
+| Column | Meaning |
+|---|---|
+| `hori_loaded`, `hori_friction` | Part 1, horizontal disk — loaded and friction (unloaded) runs |
+| `verti_loaded`, `verti_friction` | Part 2, vertical disk |
+| `d10_loaded`/`_friction` … `d14_loaded`/`_friction` | Part 3, off-axis disk at each `d` condition |
+| `platform_loaded`, `platform_friction` | Part 3, rotating platform + counterweight only (no disk) |
+
+**Sheet `part1_3_conditions`** (indexed by `group`, matching the column-name prefixes above)
+
+| Column | Unit | Meaning |
+|---|---|---|
+| `group` | – | Condition identifier — matches the timestamp-column prefix; only used as labels/lookup keys, **the values 10,11,...,14 itself carry no meaning**. You shouldn't change anything in this column. |
+| `mass_g` | g | Hanging mass for this condition's f-t fit. |
+| `d_cm` | cm | Disk offset distance (Part 3 only; NaN for `hori`/`verti`/`platform`) — drives both the parallel-axis-theorem calculation and the table/figure caption text, so **changing it here is sufficient**, no code edit needed |
+
+**Sheet `part4_raw`**
+
+| Column | Unit | Meaning |
+|---|---|---|
+| `config` | – | `disk` (calibration disk with known $I$) / `hole1` / `hole2` / `hole3` (black-box suspension holes) |
+| `T1_s`, `T2_s` | s | Start/end stopwatch reading; $30T=T_2-T_1$ |
+
+**Parts**
+
+| Part | Meaning |
+|---|---|
+| 1 | Horizontal disk about its central axis — $I_{\text{obs}}$ vs. $I_{\text{ref}}=MR^2/2$ |
+| 2 | Vertical disk about its diameter axis — $I_{\text{obs}}$ vs. $I_{\text{ref}}=MR^2/4+ML^2/12$ |
+| 3 | Parallel axis theorem — off-axis disk at five $d$ values plus a no-disk platform baseline; $I_{\text{off}}$ vs. $d^2$ regression compared against the disk+adapter mass (slope) and $I_{\text{hori,ref}}$ (intercept $-\,I_{\text{plat}}$) |
+| 4 | Torsion pendulum ($T=2\pi\sqrt{I/\kappa}$) — calibrate $\kappa$ from a disk of known $I$, then solve for the unknown black box's $I_{xx}$, $I_{yy}$, $I_{zz}$ |
+
+First theree parts use $\alpha,\alpha_f=2\pi s$, the slopes of weighted f-t linear fits ($f=0.1/(T_2-T_1)$, $t=(T_1+T_2)/2$, loaded run gives $\alpha$, friction/unloaded run gives $\alpha_f$), fed into $I=\dfrac{mr(g-r\alpha)}{\alpha-\alpha_f}$.
+
+**Constants** (hardcoded in `lab.py`)
+
+| Line | Variable | Value | Unit | Used in | Meaning |
+|---|---|---|---|---|---|
+| 14 | `g` | 9.8 | m/s² | Parts 1–3 | Standard gravity |
+| 17 | `r_pulley` | 0.0125 | m | Parts 1–3 | step-pulley radius (2r = 25.00 mm) |
+| 18 | `M_disk` | 1.4453 | kg | Parts 1–3 | Disk mass |
+| 19 | `R_disk` | 0.1142 | m | Parts 1–3 | Disk radius (2R = 22.84 cm) |
+| 20 | `L_disk` | 0.0254 | m | Part 2 | Disk thickness |
+| 28 | `mass_ref_kg` | 1.4757 | kg | Part 3 | Disk + adapter mass (weighed together, not separately) — compared against the $I_{\text{off}}$–$d^2$ fit's slope |
+| 30 | `T_TYPEB_MS` | $1/\sqrt{12}$ | ms | Parts 1–3 | Type-B uncertainty of each raw stopwatch reading $T_1$/$T_2$  (1 ms resolution), propagated into each f-t data point's uncertainty before fitting |
+| 33 | `M_ref4` | 0.6606 | kg | Part 4 | Calibration disk mass |
+| 34 | `R_ref4` | 0.06015 | m | Part 4 | Calibration disk radius (2R = 120.30 mm) |
+
+Note: remember to include the package `makecell` when compiling raw data latex tables.
+
 ### Lab 13 — Galvanometer and self-made meters
 
 **Columns**
