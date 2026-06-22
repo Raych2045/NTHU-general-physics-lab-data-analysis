@@ -125,6 +125,66 @@ First theree parts use $\alpha,\alpha_f=2\pi s$, the slopes of weighted f-t line
 
 Note: remember to include the package `makecell` when compiling raw data latex tables.
 
+### Lab 7 — One-dimensional standing wave
+
+`data.xlsx` has five sheets.
+
+**Sheet `density`** — raw mass/length used to compute the string's linear density
+
+| Column | Unit | Meaning |
+|---|---|---|
+| `mass_g` | g | Mass of the string segment |
+| `length_cm` | cm | Length of the string segment |
+
+**Sheet `resonance`** — raw data of standing wave on the string at different hanging masses
+
+| Column | Unit | Meaning |
+|---|---|---|
+| `mass_g` | g | Hanging mass, varied across groups; 3 raw rows per mass |
+| `n` | – | Antinode count |
+| `f_Hz` | Hz | Resonance frequency at that antinode count |
+| `halfwidth_cm` | cm | Measured antinode width |
+
+**Sheet `ring`** — raw resonance frequencies of the metal ring
+
+| Column | Unit | Meaning |
+|---|---|---|
+| `n` | – | Antinode count (3, 4, 5, 7, 9, 11) — only $n=3,5,7,9$ feed the $\log f$-$\log n$/$f$-$n^2$ regressions; $n=4,11$ are held out to test the $f$-$n^2$ fit's prediction |
+| `f_Hz` | Hz | Resonance frequency |
+
+**Sheet `spring_K`** — raw scale readings used to measure the spring constant
+
+| Column | Unit | Meaning |
+|---|---|---|
+| `mass_g` | g | Hanging mass |
+| `L_high_cm` | cm | Scale reading at the upper support loop's upper edge |
+| `L_low_cm` | cm | Scale reading at the lower support loop's lower edge |
+
+**Sheet `spring_n`** — raw resonance frequencies of the spring's longitudinal standing wave
+
+| Column | Unit | Meaning |
+|---|---|---|
+| `n` | – | Antinode count (7–11) |
+| `f_Hz` | Hz | Resonance frequency |
+
+**Parts**
+
+| Part | Meaning |
+|---|---|
+| 1 | Transverse wave on a string, formula: $v=\sqrt{T/\mu}$ — wave speed (from resonance $f$ and antinode width $\lambda/2$) vs. tension $T=mg$; the regression slope's reciprocal $\mu_{\text{obs}}$ is compared with $\mu_{\text{ref}}$ measured directly from the string's mass and length |
+| 2 | Ring standing wave — $\log f$-$\log n$ slope compared with theoretical exponent 2; $f$-$n^2$ fit used to predict $f$ at $n=4,11$, compared with the actual measurements |
+| 3 | Spring longitudinal wave — $F$-$x$ fit gives the spring constant $K$ (Hooke's-law); $f$-$n$ slope compared with $\sqrt{K/M}/2$; $\log f$-$\log n$ slope compared with theoretical exponent 1 |
+
+**Constants** (hardcoded in `lab.py`)
+
+| Line | Variable | Value | Unit | Used in | Meaning |
+|---|---|---|---|---|---|
+| 11 | `g` | 9.8 | m/s² | Part 1 and 3 | Standard gravity |
+| 12 | `L0_cm` | 7.50 | cm | Part 3 | Spring's natural (unloaded, vertically hung) length |
+| 13 | `M_g` | 11.46 | g | Part 3 | Spring mass |
+
+Note: `mu_ref` (Part 1) is computed dynamically from the `density` sheet, not hardcoded.
+
 ### Lab 13 — Galvanometer and self-made meters
 
 **Columns**
