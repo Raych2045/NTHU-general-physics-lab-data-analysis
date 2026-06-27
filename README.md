@@ -185,6 +185,98 @@ Note: remember to include the package `makecell` when compiling raw data latex t
 
 Note: `mu_ref` (Part 1) is computed dynamically from the `density` sheet, not hardcoded.
 
+### Lab 9 — Simple harmonic oscillation
+
+`data.xlsx` has eleven sheets. The four short tabular sheets hold the raw spring-constant data; the seven long sheets hold the recorded motion traces (Tracker exports). Just overwrite the sheets with your own data.
+
+**Sheets `static_small` / `static_medium`** — static (Hooke's-law) method, small-k / medium-k spring
+
+| Column | Unit | Meaning |
+|---|---|---|
+| `m_g` | g | Hanging mass |
+| `x_cm` | cm | Height of the spring's lower support coil above the floor |
+
+**Sheets `dynamic_small` / `dynamic_medium`** — dynamic method, small-k / medium-k spring
+
+| Column | Unit | Meaning |
+|---|---|---|
+| `m_g` | g | Hanging mass |
+| `T1_s` | s | Stopwatch reading at the start of the 1st period |
+| `T2_s` | s | Stopwatch reading at the end of the 30th period ($30T=T_2-T_1$) |
+
+**Sheet `energy_yt`** — vertical SHM trace
+
+| Column | Unit | Meaning |
+|---|---|---|
+| `t_s` | s | Time |
+| `y_m` | m | Displacement **about the equilibrium point** |
+
+**Sheet `accel`** — acceleration of the unloaded cart
+
+| Column | Unit | Meaning |
+|---|---|---|
+| `right_cm_s2` | cm/s² | Acceleration, cart sliding rightward |
+| `left_cm_s2` | cm/s² | Acceleration, cart sliding leftward |
+
+**Sheets `friction_level` / `friction_tilt` / `friction_blue`** — cart $x$-$t$ traces (Correspond to Part 3 rail-level, Part 3 rail-tilted, Part 4 equal-mass blue cart, resp.)
+
+| Column | Unit | Meaning |
+|---|---|---|
+| `t_s` | s | Time |
+| `x_m` | m | Displacement |
+
+**Sheets `damped_high` / `damped_low`** — underdamped $x$-$t$ traces, magnet high / low (Part 4)
+
+| Column | Unit | Meaning |
+|---|---|---|
+| `t_s` | s | Time |
+| `x_m` | m | Displacement |
+
+**Parts**
+
+| Part | Meaning |
+|---|---|
+| 1 | Spring constants — **static** (Hooke's law, slope of $\Delta F$ vs. $\Delta x$ gives $k_s$) and **dynamic** ($T^2$ vs. $m$, slope gives $k_d=4\pi^2/s$, intercept gives the observed effective spring mass $m_{s,\text{obs}}=3b/s$ compared with the weighed $m_{s,\text{ref}}$); done for the low-k and medium-k springs |
+| 2 | Energy conservation of the vertical SHM — kinetic/potential/total-energy plots (figures only; constants hardcoded, no error propagation) |
+| 3 | SHM under constant friction — detect cart turning points, get period $T$ and the per-cycle amplitude drop $D$, then $f=k_{\text{eff}}D/4$ compared with $f'=M\|a\|$ or $M\|a\|\cos\theta$ (rail level and rail tilted) |
+| 4 | Underdamped oscillation — fit $x=Ae^{Et}\cos(Bt+C)+D$ and derive $\omega_0$, damping ratio $\zeta$, mass $M$, damping coefficient $c$, and quasi-period $T$; magnet high, magnet low, and the equal-mass blue cart |
+
+**Choosing which spring constant feeds each calculation**
+
+Part 1 fits four spring constants and leaves them as global variables — `k_s1`, `k_d1` (small-k static/dynamic) and `k_s2`, `k_d2` (medium-k static/dynamic), each with an uncertainty `u_ks1`, `u_kd1`, `u_ks2`, `u_kd2`. Which estimate flows into Parts 2–4 is decided in a few lines of the main flow, all easy to swap:
+
+| Line | Setting | What it controls | How to change |
+|---|---|---|---|
+| 405 | `energy_part(k_energy=k_s2)` | Part 2 potential energy $PE=\tfrac12 k_{\text{energy}}y^2$ | Pass a different fitted constant (`k_d2`, `k_s1`, …) or a literal number |
+| 397, 398 | `K_SMALL, U_SMALL = k_d1, u_kd1` and `K_MEDIUM, U_MEDIUM = k_s2, u_ks2` | the small-k and medium-k estimates that build `k_eff` for Part 3 | Swap each to its static/dynamic counterpart, e.g. `k_s1, u_ks1` or `k_d2, u_kd2` (keep value and uncertainty paired) |
+| 399 | `k_eff_two = K_SMALL + K_MEDIUM` | Part 3 effective constant (one small-k + one medium-k spring) | Built from the two lines above; edit the formula only if the spring arrangement differs |
+| 401 | `k_eff_dbl = 2 * k_s2` | Part 4 effective constant (two medium springs) | Replace `k_s2` with `k_d2` (and `u_ks2`→`u_kd2` on the next line) to use the dynamic estimate |
+
+The defaults are `k_energy = k_s2`, `k_eff_two = k_d1 + k_s2`,and `k_eff_dbl = 2·k_s2`.
+
+Note: If you change the way `k_eff_two`/`k_eff_dbl` is calculated, please remember to update manually the text on line 445/491.
+
+**Constants** (hardcoded in `lab.py`)
+
+| Line | Variable | Value | Unit | Used in | Meaning |
+|---|---|---|---|---|---|
+| 43 | `g` | 9.8 | m/s² | Part 1 | Standard gravity, converts hanging mass to restoring force $\Delta F=(m-m_{\text{ref}})g$ |
+| 195 | `m` (inside `energy_part`) | 0.08036 | kg | Part 2 | Hanging mass of the vertical oscillator |
+| 196 | `m_s` (inside `energy_part`) | 0.01316 | kg | Part 2 | Medium spring mass; its one-third $m_s/3$ is the effective spring mass added in the kinetic energy |
+| 381, 384 | `ms_ref_g` | 10.40 / 13.16 | g | Part 1 | Weighed spring masses (small-k / medium-k), compared with $m_{s,\text{obs}}=3b/s$ |
+| 408 | `M_BLUE_LEVEL` | 0.58718 | kg | Part 3 (level) | Blue cart + 200 g weights, total oscillating mass $M$ |
+| 409 | `M_BLUE_TILT` | 0.59986 | kg | Part 3 (tilt) | Blue cart + 200 g weights + light-blocker, total mass $M'$ |
+| 410 | `M_EFF_TWO` | 0.02338 | kg | **Part 3** | Weighed mass of the two springs (one small and one medium), $m_{\text{eff}}$ |
+| 411 | `THETA_DEG` | 43.7631 | degree | Part 3 (tilt) | Rail tilt angle $\theta$ ($\delta\theta$ neglected in the propagation) |
+| 480 | `M_RED` | 0.44664 | kg | Part 4 (high/low) | Red cart mass |
+| 481 | `M_EFF_D` | 0.02632 | kg | **Part 4** | Weighed mass of the two medium springs |
+| 530 | `M_BLUE_EQ` | 0.44776 | kg | Part 4 (blue) | Equal-mass blue cart total mass $M''$ |
+
+Notes:
+- Turning points (Part 3/4) are found automatically by `turning_points()` via `scipy.signal.find_peaks` with a prominence/spacing heuristic; if your trace is noisier or has a turning point right at the recording boundary, tweak the `prominence`/`distance` settings there.
+   - [What is prominence?](https://www.mathworks.com/help/signal/ug/prominence.html)
+- The underdamped fits (lines ~487 and ~512) pass an explicit `p0` initial guess tuned to the sample traces. If `curve_fit` fails to converge on your data, update those guesses (especially `B`≈angular frequency and `E`≈decay rate).
+
 ### Lab 13 — Galvanometer and self-made meters
 
 **Columns**
