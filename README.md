@@ -33,6 +33,56 @@ Of course, you can also use your preferred preamble to format the document, but 
 
 ## data.xlsx reference
 
+### Lab 1 — Measurement of density
+
+`data.xlsx` has three sheets, one per test object, each storing 20 raw trials. You may add new rows if needed.
+
+**Sheet `pvc`** — PVC pipe
+
+| Column | Unit | Meaning |
+|---|---|---|
+| `inner_diameter_cm` | cm | Inner diameter (vernier caliper) |
+| `outer_diameter_cm` | cm | Outer diameter (vernier caliper) |
+| `length_cm` | cm | Tube length (vernier caliper) |
+| `mass_g` | g | Mass (electronic balance) |
+| `buoyancy_gw` | gw | Balance reading while fully submerged — by Archimedes' principle (water density is assumed to be 1 g/cm³) this numerically equals the tube's volume in cm³ |
+
+**Sheet `cylinder`** — solid cylinder
+
+| Column | Unit | Meaning |
+|---|---|---|
+| `diameter_cm` | cm | Base diameter (vernier caliper) |
+| `height_cm` | cm | Height (vernier caliper) |
+| `mass_g` | g | Mass (electronic balance) |
+
+**Sheet `steel_ball`** — steel ball
+
+| Column | Unit | Meaning |
+|---|---|---|
+| `zero_reading_mm` | mm | Micrometer zero-point offset |
+| `diameter_raw_mm` | mm | Raw micrometer diameter reading, before zero-point correction |
+| `mass_g` | g | Mass (electronic balance) |
+
+`lab.py` computes the corrected diameter (`diameter_raw_mm - zero_reading_mm`) dynamically rather than using stored values.
+
+**Parts**
+
+| Part | Meaning |
+|---|---|
+| PVC pipe | Inner/outer radius → circle areas → base area (outer − inner) → volume → density = mass/volume; cross-checked against a second density from Archimedes' principle (mass / buoyancy reading) |
+| Cylinder | Radius → base area → volume → density = mass/volume |
+| Steel ball | Radius (from the corrected diameter) → volume ($4\pi r^3/3$) → density = mass/volume |
+
+Tables 1–3 (per-object raw-measurement statistics) report the mean to 5 decimal places and all other columns (std. dev., Type A/B/combined uncertainty) to 3 significant figures; final rounding is left to users.
+
+**Constants** (hardcoded in `lab.py`)
+
+| Line | Variable | Value | Unit | Used in | Meaning |
+|---|---|---|---|---|---|
+| 9 | `VERNIER_RES_CM` | 0.005 | cm | all (lengths) | Vernier caliper least count (0.05 mm), Type-B uncertainty source |
+| 10 | `MICROMETER_RES_MM` | 0.01 | mm | Steel ball | Micrometer caliper least count, Type-B uncertainty source |
+| 11 | `BALANCE_RES_G` | 0.01 | g | all (mass/buoyancy) | Electronic balance least count, Type-B uncertainty source |
+
 ### Lab 3 — Centripetal force
 
 `data.xlsx` has one sheet per experiment, each storing raw (ungrouped) period readings.
