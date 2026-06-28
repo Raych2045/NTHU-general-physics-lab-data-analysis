@@ -683,3 +683,70 @@ Note: the damped-oscillation fit (peak time vs. voltage to find $\beta$ and $\om
 | 24 | `m_e` | $9.1093837\times10^{-31}$ | kg | A | Electron mass |
 | 25 | `eps0` | $8.854187817\times10^{-12}$ | F/m | A | Vacuum permittivity |
 | 26 | `m_p` | $1.67262192\times10^{-27}$ | kg | A | Proton mass, used to compute the reduced mass $\mu$ |
+
+# About me
+
+## Grades
+
+### 11410 General Physics Laboratory (I)
+
+1st Midterm Exam: 73/100
+
+2nd Midterm Exam: 85/100
+
+Final Exam: 考卷我丟了
+
+Grade: A+
+
+Ranking: 1/32
+
+T Score: 65.22
+
+### 11420 General Physics Laboratory (II)
+
+Midterm Exam: 102/122
+
+Final Exam: 111/120
+
+Grade: A+
+
+Ranking: 1/24
+
+T Score: 72.36
+
+**Details: Report Scores**
+
+| lab | pre | post |
+|---|---|---|
+| 1 | 93 | 90 |
+| 2 | 97 | 90 |
+| 3 | 100 | 91 |
+| 5 | 100 | 97.14 |
+| 7 | 94 | 95 |
+| 9 | 97 | 98 |
+| 10 | 92 | 95 |
+| 13 | 90 | 100 |
+| 14 | 94 | 99 |
+| 15 | 98 | 93 |
+| 17 | 95 | 95 |
+| 18 | 93 | 93 |
+| 19 | 95 | 100 |
+| 21 | 100 | 95 |
+| 22 | 90 | 93 |
+| 23 | 83 | 86 |
+
+## Project Background and Precautions
+
+The most frustrating thing about *General Physics Laboratory* courses is the disproportionate time invested compared to the final report scores.
+
+Since it's only one credit, we should focus on what's truly important.
+
+After understanding the procedures and formulas used, data processing becomes nothing but repetitive work, so I had ChatGPT write a bunch of reusable Python scripts.
+
+During the summer break, I rewrote these scripts using Claude Code, automating data reading, image storage, and LaTeX table output.
+
+Codex should be able to assist in modifying the code should the lab content change in the future.
+
+I asked Claude Code to package their project processing experience into a skill, which includes my formatting preferences. I may release `SKILL.md` later, which you can then modify to your liking. My goal is to help others replicate this workflow in their labs.
+
+Please note: **DO NOT promote this tool**. If the NTHU General Physics Lab were aware that the existence of such a tool would deprive students of opportunities to train their data analysis skills, they might immediately revise their lab content.
