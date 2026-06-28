@@ -6,7 +6,7 @@ Once you understand the procedure and the formulas behind it, the data analysis 
 
 I also asked Claude Code to distill its experience working on this project — including my formatting preferences — into a reusable skill. I may release that `SKILL.md` at some point, for others to adapt to their own labs; the goal is to let other students replicate this workflow rather than rebuild it from scratch.
 
-One important caveat: **please don't promote this tool.** If NTHU's General Physics Lab realized something like this existed and was depriving students of the chance to practice data analysis themselves, they'd likely revise the lab content immediately — and that helps no one.
+One important caveat: **please don't publicize this tool.** If NTHU's General Physics Lab realized something like this existed and was depriving students of the chance to practice data analysis themselves, they'd likely revise the lab content immediately — and that helps no one.
 
 # Introduction and Explanation
 
