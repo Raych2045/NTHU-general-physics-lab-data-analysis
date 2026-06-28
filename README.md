@@ -8,6 +8,20 @@ I also asked Claude Code to distill its experience working on this project — i
 
 One important caveat: **please don't publicize this tool.** If NTHU's General Physics Lab realized something like this existed and was depriving students of the chance to practice data analysis themselves, they'd likely revise the lab content immediately — and that helps no one.
 
+# 中文說明
+
+本專案旨在提供一套端對端（end-to-end）程式碼，讓使用者得以一鍵生成普通物理實驗之數據圖表，前提為電腦已安裝 Python、VS Code 及 MiKTeX（亦可改用 Overleaf；學校目前提供的 Premium 方案已足夠使用）。
+
+筆者開啟此專案的初衷是希望讓使用者減少撰寫普通物理實驗報告之耗時。
+
+筆者雖選擇將本專案開源，然仍希望各位不將其公開散布，例如轉發至系所群組或 Dcard 等平台。至於私下分享連結予他人，則十分歡迎。
+
+切勿令普通物理實驗室得知此工具之存在，因授課教授恐將認為此工具削弱學生數據分析之能力，進而修改實驗內容（筆者個人則持相反看法，畢竟使用者於實驗進行當下，仍須親自以 Excel 手動處理一遍數據）。現有程式碼完全依筆者參與實驗課程時的規格撰寫而成；日後若實驗內容有所調整，Codex 應可協助修改對應程式碼。
+
+若發現程式碼存有錯誤，或 `README.md` 中有說明未盡清晰之處，歡迎隨時告知筆者。
+
+本專案涉及生成式 AI 之應用。
+
 # Introduction and Explanation
 
 ## Requirements for running `lab.py`
