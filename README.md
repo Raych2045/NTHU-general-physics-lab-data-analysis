@@ -371,6 +371,10 @@ Notes:
    - [What is prominence?](https://www.mathworks.com/help/signal/ug/prominence.html)
 - The underdamped fits (lines ~487 and ~512) pass an explicit `p0` initial guess tuned to the sample traces. If `curve_fit` fails to converge on your data, update those guesses (especially `B`≈angular frequency and `E`≈decay rate).
 
+### Lab 10 — Thermodynamics
+
+Try it by yourself and you'll see.
+
 ### Lab 13 — Galvanometer and self-made meters
 
 **Columns**
