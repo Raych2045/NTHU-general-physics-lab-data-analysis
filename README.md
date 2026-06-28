@@ -1,18 +1,12 @@
 # Project Background and Precautions
 
-The most frustrating thing about *General Physics Laboratory* courses is the disproportionate time invested compared to the final report scores.
+The most frustrating thing about *General Physics Laboratory* courses is how little the final report score reflects the time actually invested. Since it's only worth one credit, it's worth focusing effort only on what genuinely matters.
 
-Since it's only one credit, we should focus on what's truly important.
+Once you understand the procedure and the formulas behind it, the data analysis itself is just repetitive work — so I had ChatGPT write a batch of reusable Python scripts to handle it. During my leisure time, I rewrote those scripts with Claude Code, which automated the data reading, figure export, and LaTeX table generation **end to end**. Codex should be able to take over maintaining the code if a lab's content changes in the future.
 
-After understanding the procedures and formulas used, data analysis becomes nothing but repetitive work, so I had ChatGPT write a bunch of reusable Python scripts.
+I also asked Claude Code to distill its experience working on this project — including my formatting preferences — into a reusable skill. I may release that `SKILL.md` at some point, for others to adapt to their own labs; the goal is to let other students replicate this workflow rather than rebuild it from scratch.
 
-During the summer break, I rewrote these scripts using Claude Code, automating data reading, image storage, and LaTeX table output.
-
-Codex should be able to assist in modifying the code should the lab content change in the future.
-
-I asked Claude Code to package their project processing experience into a skill, which includes my formatting preferences. I may release `SKILL.md` later, which you can then modify to your liking. My goal is to help others replicate this workflow in their labs.
-
-Please note: **DO NOT promote this tool**. If the NTHU General Physics Lab were aware that the existence of such a tool would deprive students of opportunities to train their data analysis skills, they might immediately revise their lab content.
+One important caveat: **please don't promote this tool.** If NTHU's General Physics Lab realized something like this existed and was depriving students of the chance to practice data analysis themselves, they'd likely revise the lab content immediately — and that helps no one.
 
 # Introduction and Explanation
 
@@ -41,9 +35,9 @@ Please note: **DO NOT promote this tool**. If the NTHU General Physics Lab were 
 
 It only contains LaTeX tables, and direct compilation will not produce any results.
 
-The recommended approach is to import the images from `figures/` and `report.tex` together into `latexplate.tex`, and then compile it locally or on Overleaf. You should then get a PDF file.
+The recommended approach is to import the images from `figures/` and `report.tex` together into `latexplate.tex`, and then compile it locally or on [Overleaf](https://www.overleaf.com/). You should then get a PDF file.
 
-Of course, you can also use your preferred preamble to format the document, but you must include the following three LaTeX packages: `booktabs`, `siunitx`, and `xeCJK`.
+Of course, you can use your own preamble to format the document, but you must include the following three LaTeX packages: `booktabs`, `siunitx`, and `xeCJK`.
 
 The compiled results of all data table can be found in `example/`, with one PDF file per lab.
 
