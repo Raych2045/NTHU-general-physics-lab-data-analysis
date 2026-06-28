@@ -1,2 +1,5 @@
 __pycache__/
-~$data.xlsx
+# Ignore Microsoft Office temporary files
+~$*.docx
+~$*.xlsx
+~$*.pptx
