@@ -83,6 +83,48 @@ Tables 1–3 (per-object raw-measurement statistics) report the mean to 5 decima
 | 10 | `MICROMETER_RES_MM` | 0.01 | mm | Steel ball | Micrometer caliper least count, Type-B uncertainty source |
 | 11 | `BALANCE_RES_G` | 0.01 | g | all (mass/buoyancy) | Electronic balance least count, Type-B uncertainty source |
 
+### Lab 2 — Newton's second law and forces
+
+`data.xlsx` has two sheets.
+
+**Sheet `incline`** — raw acceleration of the cart on the incline, at each hanging mass
+
+| Column | Unit | Meaning |
+|---|---|---|
+| `mass_g` | g | Hanging mass |
+| `acceleration_cm_s2` | cm/s², `,`-separated | The 3 raw trial readings at that mass, e.g. `"35.60,35.46,35.24"` |
+| `group` | – | `a_minus` (mass range where the cart's true signed acceleration is negative, before the zero crossing) or `a_plus` (after) — explicit column rather than inferred from row position, so reordering/editing rows won't silently break the split |
+
+**Sheet `horizontal`** — raw acceleration of the cart on a leveled (horizontal) track, no hanging mass, used as an independent friction measurement
+
+| Column | Unit | Meaning |
+|---|---|---|
+| `left_cm_s2` | cm/s² | Acceleration, cart sliding left |
+| `right_cm_s2` | cm/s² | Acceleration, cart sliding right |
+
+**Parts**
+
+| Part | Meaning |
+|---|---|
+| $a_{-}(m)$ / $a_{+}(m)$ | At each hanging mass $m$, the cart's incline acceleration is recorded as an unsigned magnitude; on the unified $a$-$m$ graph the $a_{-}$ group's values are negated (sign-flipped) to recover the true signed acceleration. Both groups are fit linearly ($a_{+}$ restricted to its `N_FIT_A_PLUS_LINEAR` smaller-$m$ points — the larger masses break the linear approximation) to get each line's slope and x-intercept ($m_{-}$ and $m_{+}$) |
+| Slope-method results | $M=g/s_{-}$, $\|\mathbf{F_f}\|=(m_{+}-m_{-})g/2$, $\theta=\arcsin\dfrac{(m_{+}+m_{-})s_{-}}{2g}$ ($s_-$ = the $a_-(m)$ slope), compared against an independent method: $M$ from a direct balance reading, $\|\mathbf{F_f}\|$ from $M_{\text{ref}}\times(\text{mean horizontal-track deceleration})$, $\theta$ from $\arcsin(\text{height difference}/\text{incline length})$ |
+| Nonlinear curve fit | Both groups (now using **all** of $a_+$'s points, since the nonlinear model — unlike the linear fit — already captures the $m+M$ denominator's curvature) are fit to $\dfrac{gm-g\sin\theta\, M\pm F}{m+M}$ ($\theta$ fixed at the independent trig-method value; $+F$ for $a_-$, $-F$ for $a_+$), then $M$ and $F$ from the two fits are averaged and compared in the same way |
+
+**Constants** (hardcoded in `lab.py`)
+
+| Line | Variable | Value | Unit | Used in | Meaning |
+|---|---|---|---|---|---|
+| 11 | `G_CGS` | 980.665 | cm/s² | all | Standard gravity — this lab works throughout in cm-g-s (CGS) units, not SI |
+| 12 | `M_CART_REF_G` | 382.70 | g | comparison tables | Cart mass from a direct balance reading (the "other method" reference) |
+| 13 | `SLOPE_RULER_LENGTH_CM` | 113.92 | cm | comparison tables, curve fit | Ruler-measured incline length |
+| 14 | `SLOPE_HEIGHT_DIFF_CM` | 4.55 | cm | comparison tables, curve fit | Ruler-measured height difference between the incline's two ends — together with the line above, gives the independent trig-method $\theta$ used both as a comparison target and as the fixed $\theta$ inside the curve-fit model |
+| 16 | `N_FIT_A_PLUS_LINEAR` | 15 | count | $a_+(m)$ linear fit only | Number of points corresponding to a relatively small $m$ kept for the **linear** fit (the curve fit uses all) |
+| 17 | `ACCEL_RES_CM_S2` | 0.01 | cm/s² | all (acceleration) | Photogates' acceleration-mode reading resolution, Type-B uncertainty source (combined with Type A for every acceleration mean) |
+
+Notes:
+- The x-intercept uncertainty in the linear-fit tables includes the slope/intercept covariance term (`pcov[0,1]` from `curve_fit`).
+- All fits read directly from the raw data in `data.xlsx`, not from already-rounded table values.
+
 ### Lab 3 — Centripetal force
 
 `data.xlsx` has one sheet per experiment, each storing raw (ungrouped) period readings.
