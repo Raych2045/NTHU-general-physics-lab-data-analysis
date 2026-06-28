@@ -31,6 +31,8 @@ The recommended approach is to import the images from `figures/` and `report.tex
 
 Of course, you can also use your preferred preamble to format the document, but you must include the following three LaTeX packages: `booktabs`, `siunitx`, and `xeCJK`.
 
+The compiled results of all data table can be found in `example/`, with one PDF file per lab.
+
 ## data.xlsx reference
 
 ### Lab 1 — Measurement of density
